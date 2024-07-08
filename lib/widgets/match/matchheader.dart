@@ -7,6 +7,9 @@ class MatchHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isDarkTheme = Theme.of(context).brightness == Brightness.dark;
+    final ColorScheme scheme = Theme.of(context).colorScheme;
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       clipBehavior: Clip.hardEdge,
@@ -69,8 +72,9 @@ class MatchHeader extends StatelessWidget {
                                 Text(
                                   'Vfl Bochum vs. \nFC Bayern Munich',
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: isDarkTheme
+                                        ? scheme.onPrimaryContainer
+                                        : scheme.onPrimary,
                                     fontWeight: FontWeight.w700,
                                     fontSize: 32,
                                   ),
@@ -79,8 +83,9 @@ class MatchHeader extends StatelessWidget {
                                 Text(
                                   'Vonovia Ruhrstadion, 15:30pm, 21.01.2024',
                                   style: TextStyle(
-                                    color:
-                                        Theme.of(context).colorScheme.onPrimary,
+                                    color: isDarkTheme
+                                        ? scheme.onPrimaryContainer
+                                        : scheme.onPrimary,
                                     fontWeight: FontWeight.w400,
                                     fontSize: 16,
                                   ),

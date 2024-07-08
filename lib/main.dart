@@ -18,9 +18,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.deepPurple, brightness: Brightness.light),
-          useMaterial3: true,
+              seedColor: Colors.blue, brightness: Brightness.light),
           typography: Typography.material2021()),
+      darkTheme: ThemeData(
+          colorScheme: ColorScheme.fromSeed(
+              seedColor: Colors.blue, brightness: Brightness.dark),
+          typography: Typography.material2021()),
+      themeMode: ThemeMode.dark,
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
@@ -36,7 +40,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int currentPageIndex = 0;
+  int _currentPageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ExploreView(),
         SearchView(),
         MessagesView()
-      ][currentPageIndex],
+      ][_currentPageIndex],
       bottomNavigationBar: NavigationBar(
         destinations: [
           NavigationDestination(
@@ -70,9 +74,9 @@ class _MyHomePageState extends State<MyHomePage> {
               label: 'Messages'),
         ],
         onDestinationSelected: (int index) => setState(() {
-          currentPageIndex = index;
+          _currentPageIndex = index;
         }),
-        selectedIndex: currentPageIndex,
+        selectedIndex: _currentPageIndex,
       ),
     );
   }
