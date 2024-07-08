@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/views/chat.dart';
+import 'package:learning_flutter/views/chat_view.dart';
 
 class MessagePreviewWidget extends StatelessWidget {
   const MessagePreviewWidget(

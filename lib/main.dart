@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/views/explore.dart';
-import 'package:learning_flutter/views/feed.dart';
-import 'package:learning_flutter/views/messages.dart';
-import 'package:learning_flutter/views/search.dart';
+import 'package:learning_flutter/views/explore_view.dart';
+import 'package:learning_flutter/views/feed_view.dart';
+import 'package:learning_flutter/views/messages_view.dart';
+import 'package:learning_flutter/views/search_view.dart';
 
 void main() {
   runApp(const MyApp());
