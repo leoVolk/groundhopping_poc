@@ -28,56 +28,56 @@ class _ExploreViewState extends State<ExploreView> {
               child: SafeArea(
                 child: Padding(
                   padding: EdgeInsets.all(8),
-                  child: SearchAnchor(viewOnSubmitted: (value) {
-                    /*     if (value.isNotEmpty) {
-                      getResults(value);
-                    } */
-                  }, builder:
-                      (BuildContext context, SearchController controller) {
-                    return SearchBar(
-                      shadowColor: WidgetStateColor.transparent,
-                      controller: controller,
-                      padding: const WidgetStatePropertyAll<EdgeInsets>(
-                          EdgeInsets.symmetric(horizontal: 16.0)),
-                      onTap: () {
-                        controller.openView();
+                  child: SearchAnchor(
+                      viewOnSubmitted: (value) {},
+                      builder:
+                          (BuildContext context, SearchController controller) {
+                        return SearchBar(
+                          shadowColor: WidgetStateColor.transparent,
+                          controller: controller,
+                          padding: const WidgetStatePropertyAll<EdgeInsets>(
+                              EdgeInsets.symmetric(horizontal: 16.0)),
+                          onTap: () {
+                            controller.openView();
+                          },
+                          onChanged: (_) {
+                            controller.openView();
+                          },
+                          // onSubmitted: (value) => getResults(value),
+                          leading: const Icon(Icons.search),
+                        );
                       },
-                      onChanged: (_) {
-                        controller.openView();
-                      },
-                      // onSubmitted: (value) => getResults(value),
-                      leading: const Icon(Icons.search),
-                    );
-                  }, suggestionsBuilder: (BuildContext context,
-                      SearchController controller) async {
-                    //TODO: OPTIMIZE
-                    var search = controller.text;
+                      suggestionsBuilder: (BuildContext context,
+                          SearchController controller) async {
+                        //TODO: OPTIMIZE
+                        var search = controller.text;
 
-                    if (search.isEmpty) return List.empty();
+                        if (search.isEmpty) return List.empty();
 
-                    final response = await http.get(Uri.parse(
-                        'https://nominatim.openstreetmap.org/search?q=$search.&format=json&limit=10'));
+                        final response = await http.get(Uri.parse(
+                            'https://nominatim.openstreetmap.org/search?q=$search.&format=json&limit=10'));
 
-                    var result = jsonDecode(response.body);
+                        var result = jsonDecode(response.body);
 
-                    return List<ListTile>.generate(result.length, (int index) {
-                      final item = result[index];
-                      return ListTile(
-                        title: Text(item['name']),
-                        subtitle: Text(
-                          item['display_name'],
-                          style: TextStyle(overflow: TextOverflow.ellipsis),
-                        ),
-                        onTap: () {
-                          controller.closeView(item['display_name']);
-                          _mapController.move(
-                              LatLng(double.parse(item['lat']),
-                                  double.parse(item['lon'])),
-                              17);
-                        },
-                      );
-                    });
-                  }),
+                        return List<ListTile>.generate(result.length,
+                            (int index) {
+                          final item = result[index];
+                          return ListTile(
+                            title: Text(item['name']),
+                            subtitle: Text(
+                              item['display_name'],
+                              style: TextStyle(overflow: TextOverflow.ellipsis),
+                            ),
+                            onTap: () {
+                              controller.closeView(item['display_name']);
+                              _mapController.move(
+                                  LatLng(double.parse(item['lat']),
+                                      double.parse(item['lon'])),
+                                  17);
+                            },
+                          );
+                        });
+                      }),
                 ),
               ),
             ),

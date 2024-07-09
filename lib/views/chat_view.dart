@@ -50,7 +50,7 @@ class _ChatViewState extends State<ChatView> {
     return Scaffold(
         backgroundColor: Theme.of(context).colorScheme.surface,
         appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),
@@ -67,7 +67,7 @@ class _ChatViewState extends State<ChatView> {
               children: _messages.reversed.toList(),
             )),
             Container(
-                color: Theme.of(context).colorScheme.secondaryContainer,
+                color: Theme.of(context).colorScheme.surfaceContainer,
                 child: SafeArea(
                   child: Padding(
                     padding: EdgeInsets.all(8),
