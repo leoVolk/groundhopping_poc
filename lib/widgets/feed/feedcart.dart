@@ -53,7 +53,7 @@ class FeedCardWidget extends StatelessWidget {
                                         Theme.of(context).primaryColor,
                                     radius: 24,
                                     child: Text(
-                                      'A',
+                                      'PR',
                                       style: TextStyle(
                                           fontSize: 16,
                                           color: Theme.of(context)

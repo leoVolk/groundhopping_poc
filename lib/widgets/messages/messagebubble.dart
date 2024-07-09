@@ -26,8 +26,8 @@ class MessageBubbleWidget extends StatelessWidget {
                   child: Container(
                     padding: EdgeInsets.all(8),
                     color: isIncoming
-                        ? Theme.of(context).colorScheme.inversePrimary
-                        : Theme.of(context).colorScheme.primary,
+                        ? Theme.of(context).colorScheme.primary
+                        : Theme.of(context).colorScheme.inversePrimary,
                     child: Column(
                       children: [
                         Text(
@@ -36,8 +36,10 @@ class MessageBubbleWidget extends StatelessWidget {
                               color: isIncoming
                                   ? Theme.of(context)
                                       .colorScheme
-                                      .onSecondaryContainer
-                                  : Theme.of(context).colorScheme.onPrimary),
+                                      .onPrimary
+                                  : Theme.of(context)
+                                      .colorScheme
+                                      .onSecondaryContainer),
                         ),
                       ],
                     ),

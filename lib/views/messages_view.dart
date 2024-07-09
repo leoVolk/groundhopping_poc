@@ -9,7 +9,7 @@ class MessagesView extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
         leading: IconButton(
           onPressed: () {},
           icon: Icon(Icons.menu),
