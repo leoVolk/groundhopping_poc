@@ -25,7 +25,7 @@ class App extends StatefulWidget {
 
 class _AppState extends State<App> {
   final storage = FlutterSecureStorage();
-  ThemeMode _themeMode = ThemeMode.dark;
+  ThemeMode _themeMode = ThemeMode.light;
 
   @override
   void initState() {

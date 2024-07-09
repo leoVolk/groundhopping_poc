@@ -23,7 +23,7 @@ class FeedCardWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Card(
-                color: Theme.of(context).colorScheme.onPrimary,
+                color: Theme.of(context).colorScheme.surfaceContainerLow,
                 clipBehavior: Clip.hardEdge,
                 child: InkWell(
                   onTap: () {

@@ -21,7 +21,7 @@ class _ExploreViewState extends State<ExploreView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        backgroundColor: Theme.of(context).colorScheme.surface,
         drawer: MainDrawerWidget(),
         appBar: AppBar(
           backgroundColor: Theme.of(context).colorScheme.surfaceContainer,

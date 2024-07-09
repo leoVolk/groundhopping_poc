@@ -8,10 +8,16 @@ class MyMatchesView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Matches'),
-        backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
       ),
       backgroundColor: Theme.of(context).colorScheme.surface,
-      body: ListView(),
+      body: CustomScrollView(
+        slivers: [
+          SliverList(
+              delegate: SliverChildListDelegate(
+                  List.generate(200, (index) => Text(index.toString()))))
+        ],
+      ),
     );
   }
 }
