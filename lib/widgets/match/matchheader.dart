@@ -45,24 +45,8 @@ class MatchHeader extends StatelessWidget {
               child: Padding(
                   padding: EdgeInsets.all(8),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          CircleAvatar(
-                            child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: Icon(Icons.arrow_back)),
-                          ),
-                          CircleAvatar(
-                            child: IconButton(
-                                onPressed: () {}, icon: Icon(Icons.more_vert)),
-                          ),
-                        ],
-                      ),
                       Row(
                         children: [
                           Expanded(

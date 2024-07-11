@@ -19,8 +19,22 @@ class App extends StatefulWidget {
   @override
   State<App> createState() => _AppState();
 
+  // ignore: library_private_types_in_public_api
   static _AppState of(BuildContext context) =>
       context.findAncestorStateOfType<_AppState>()!;
+}
+
+extension ContextExtension on BuildContext {
+  void showSnackBar(String message, {bool isError = false}) {
+    ScaffoldMessenger.of(this).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        backgroundColor: isError
+            ? Theme.of(this).colorScheme.error
+            : Theme.of(this).snackBarTheme.backgroundColor,
+      ),
+    );
+  }
 }
 
 class _AppState extends State<App> {

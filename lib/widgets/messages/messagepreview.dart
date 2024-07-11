@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/main.dart';
 import 'package:learning_flutter/views/chat_view.dart';
 
 class MessagePreviewWidget extends StatelessWidget {
@@ -20,41 +21,44 @@ class MessagePreviewWidget extends StatelessWidget {
     }
 
     return InkWell(
-        onTap: () => navigateToChat(),
-        child: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(8),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  CircleAvatar(
-                    child: Text('A'),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'User Name',
-                            style: TextStyle(fontSize: 16),
-                          ),
-                          Text(
-                              style: TextStyle(overflow: TextOverflow.ellipsis),
-                              softWrap: false,
-                              'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,')
-                        ],
-                      ),
+        child: InkWell(
+      onLongPress: () => context.showSnackBar(chatId.toString()),
+      onTap: () => navigateToChat(),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(8),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  child: Text('A'),
+                ),
+                Expanded(
+                  child: Padding(
+                    padding: EdgeInsets.fromLTRB(12, 0, 12, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'User Name',
+                          style: TextStyle(fontSize: 16),
+                        ),
+                        Text(
+                            style: TextStyle(overflow: TextOverflow.ellipsis),
+                            softWrap: false,
+                            'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,')
+                      ],
                     ),
                   ),
-                  Text('19.01')
-                ],
-              ),
+                ),
+                Text('19.01')
+              ],
             ),
-            Divider()
-          ],
-        ));
+          ),
+          Divider()
+        ],
+      ),
+    ));
   }
 }

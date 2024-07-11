@@ -20,7 +20,7 @@ class MessagesView extends StatelessWidget {
             24,
             (index) => MessagePreviewWidget(
                   isUnread: false,
-                  chatId: 123456,
+                  chatId: 123456 + index,
                 )),
       ),
     );

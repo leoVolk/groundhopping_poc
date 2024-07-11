@@ -10,6 +10,27 @@ class MatchView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          forceMaterialTransparency: true,
+          actions: [
+            Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8),
+                child: CircleAvatar(
+                  child: IconButton(onPressed: () {}, icon: Icon(Icons.share)),
+                ))
+          ],
+          leading: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: CircleAvatar(
+                  child: IconButton(
+                icon: Icon(
+                  Icons.chevron_left,
+                  size: 24,
+                ),
+                onPressed: () => Navigator.pop(context),
+              ))),
+        ),
         backgroundColor: Theme.of(context).colorScheme.surface,
         body: SingleChildScrollView(
           child: Column(
