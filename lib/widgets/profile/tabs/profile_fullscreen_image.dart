@@ -10,28 +10,31 @@ class ProfileFullscreenImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        title: Text(tag),
-        actions: [
-          IconButton(
-              onPressed: () => {/*TODO: download */},
-              icon: Icon(Icons.download))
-        ],
-      ),
-      body: GestureDetector(
-        child: Center(
-          child: Hero(
-            tag: 'image$tag',
-            child: Image.network(
-              imgLink,
-            ),
-          ),
+        appBar: AppBar(
+          backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+          title: Text(tag),
+          actions: [
+            IconButton(
+                onPressed: () => {/*TODO: download */},
+                icon: Icon(Icons.download))
+          ],
         ),
-        onTap: () {
-          Navigator.pop(context);
-        },
-      ),
-    );
+        body: Stack(
+          children: [
+            GestureDetector(
+              child: Center(
+                child: Hero(
+                  tag: 'image$tag',
+                  child: Image.network(
+                    imgLink,
+                  ),
+                ),
+              ),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ));
   }
 }
