@@ -1,4 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learning_flutter/widgets/profile/profile_badges.dart';
+import 'package:learning_flutter/widgets/profile/tabs/profile_comments.dart';
+import 'package:learning_flutter/widgets/profile/tabs/profile_history.dart';
+import 'package:learning_flutter/widgets/profile/tabs/profile_overview.dart';
+import 'package:learning_flutter/widgets/profile/tabs/profile_photos.dart';
+import 'package:learning_flutter/widgets/profile/tabs/profile_videos.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});
@@ -7,11 +13,10 @@ class ProfileView extends StatefulWidget {
   State<ProfileView> createState() => _ProfileViewState();
 }
 
-//TODO: FIND WAY TO REALIZE DESIGN
 class _ProfileViewState extends State<ProfileView>
     with TickerProviderStateMixin {
   late final TabController _tabController = TabController(
-    length: 2,
+    length: 5,
     vsync: this,
   );
 
@@ -115,84 +120,83 @@ class _ProfileViewState extends State<ProfileView>
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: 48,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        physics: ClampingScrollPhysics(),
-                        shrinkWrap: true,
-                        children: List.generate(
-                            10,
-                            (index) => Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 4),
-                                  child: FilledButton(
-                                    style: ButtonStyle(
-                                        padding: WidgetStatePropertyAll(
-                                          EdgeInsets.symmetric(horizontal: 12),
-                                        ),
-                                        backgroundColor: WidgetStatePropertyAll(
-                                            Theme.of(context)
-                                                .colorScheme
-                                                .secondaryContainer)),
-                                    onPressed: () => {},
-                                    child: Row(
-                                      children: [
-                                        Icon(
-                                          Icons.flag,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .onSecondaryContainer,
-                                        ),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 4)),
-                                        Text(
-                                          'Badge Name',
-                                          style: TextStyle(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .onSecondaryContainer),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                )),
-                      ),
-                    ),
+                    ProfileBadges(),
                     Padding(padding: EdgeInsets.symmetric(vertical: 8)),
-                    TabBar(controller: _tabController, tabs: [
-                      Tab(
-                        text: 'Overview',
-                      ),
-                      Tab(
-                        text: 'History',
-                      )
-                    ])
                   ],
                 ),
+              ),
+              SliverToBoxAdapter(
+                child: TabBar(
+                    controller: _tabController,
+                    isScrollable: true,
+                    tabs: [
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.language),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8)),
+                            Text('Overview')
+                          ],
+                        ),
+                      ),
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.show_chart),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8)),
+                            Text('History')
+                          ],
+                        ),
+                      ),
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.list),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8)),
+                            Text('Comments')
+                          ],
+                        ),
+                      ),
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.photo_camera_outlined),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8)),
+                            Text('Photos')
+                          ],
+                        ),
+                      ),
+                      Tab(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(Icons.video_camera_front_outlined),
+                            Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 8)),
+                            Text('Videos')
+                          ],
+                        ),
+                      ),
+                    ]),
               )
             ];
           },
           body: TabBarView(
             controller: _tabController,
             children: [
-              ListView(
-                padding: EdgeInsets.zero,
-                children: List.generate(
-                    200,
-                    (index) => Card(
-                          child: Text('Test$index'),
-                        )),
-              ),
-              ListView(
-                padding: EdgeInsets.zero,
-                children: List.generate(
-                    200,
-                    (index) => Card(
-                          child: Text('Test$index'),
-                        )),
-              )
+              ProfileOverview(),
+              ProfileHistory(),
+              ProfileComments(),
+              ProfilePhotos(),
+              ProfileVideos(),
             ],
           )),
     );
