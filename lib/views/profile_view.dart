@@ -20,6 +20,8 @@ class _ProfileViewState extends State<ProfileView>
     vsync: this,
   );
 
+  late final ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +29,8 @@ class _ProfileViewState extends State<ProfileView>
       extendBodyBehindAppBar: true,
       appBar: AppBar(
         forceMaterialTransparency: true,
+        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
+        surfaceTintColor: Theme.of(context).colorScheme.surfaceContainer,
         leading: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: CircleAvatar(
@@ -55,7 +59,7 @@ class _ProfileViewState extends State<ProfileView>
             child: CircleAvatar(
                 child: IconButton(
               icon: Icon(
-                Icons.add,
+                Icons.share,
                 size: 24,
               ),
               onPressed: () => Navigator.pop(context),
@@ -64,6 +68,7 @@ class _ProfileViewState extends State<ProfileView>
         ],
       ),
       body: NestedScrollView(
+          controller: _scrollController,
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverToBoxAdapter(

@@ -19,7 +19,7 @@ class ProfileBadges extends StatelessWidget {
                     style: ButtonStyle(
                         padding: WidgetStatePropertyAll(
                           EdgeInsets.symmetric(
-                            horizontal: 8,
+                            horizontal: 16,
                           ),
                         ),
                         backgroundColor: WidgetStatePropertyAll(
