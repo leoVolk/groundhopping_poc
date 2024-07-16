@@ -26,11 +26,9 @@ class _ProfileViewState extends State<ProfileView>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      extendBodyBehindAppBar: true,
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
         forceMaterialTransparency: true,
-        backgroundColor: Theme.of(context).colorScheme.surfaceContainer,
-        surfaceTintColor: Theme.of(context).colorScheme.surfaceContainer,
         leading: Padding(
           padding: EdgeInsets.symmetric(horizontal: 8.0),
           child: CircleAvatar(
@@ -130,8 +128,10 @@ class _ProfileViewState extends State<ProfileView>
                   ],
                 ),
               ),
-              SliverToBoxAdapter(
-                child: TabBar(
+              SliverAppBar(
+                automaticallyImplyLeading: false,
+                pinned: true,
+                flexibleSpace: TabBar(
                     controller: _tabController,
                     isScrollable: true,
                     tabs: [
@@ -191,7 +191,7 @@ class _ProfileViewState extends State<ProfileView>
                         ),
                       ),
                     ]),
-              )
+              ),
             ];
           },
           body: TabBarView(
