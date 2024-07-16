@@ -22,115 +22,81 @@ class _ProfileViewState extends State<ProfileView>
 
   late final ScrollController _scrollController = ScrollController();
 
+  double _scrollPos = 0;
+
+  _scrollListener() {
+    setState(() {
+      if (_scrollController.hasClients) {
+        _scrollPos = _scrollController.position.pixels;
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
-      // extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        forceMaterialTransparency: true,
-        leading: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8.0),
-          child: CircleAvatar(
-              child: IconButton(
-            icon: Icon(
-              Icons.chevron_left,
-              size: 24,
-            ),
-            onPressed: () => Navigator.pop(context),
-          )),
-        ),
-        actions: [
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: CircleAvatar(
-                child: IconButton(
-              icon: Icon(
-                Icons.add,
-                size: 24,
-              ),
-              onPressed: () => Navigator.pop(context),
-            )),
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 8.0),
-            child: CircleAvatar(
-                child: IconButton(
-              icon: Icon(
-                Icons.share,
-                size: 24,
-              ),
-              onPressed: () => Navigator.pop(context),
-            )),
-          )
-        ],
-      ),
       body: NestedScrollView(
           controller: _scrollController,
+          physics: BouncingScrollPhysics(),
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
+              SliverAppBar(
+                title: _scrollPos > 356 ? Text('User Name') : null,
+                pinned: true,
+                expandedHeight: 356,
+                flexibleSpace: FlexibleSpaceBar(
+                    stretchModes: <StretchMode>[
+                      StretchMode.zoomBackground,
+                      StretchMode.blurBackground,
+                      StretchMode.fadeTitle
+                    ],
+                    background: Stack(
+                      children: [
+                        Positioned.fill(
+                          child: Image.network(
+                            'https://pbs.twimg.com/profile_banners/605734189/1708339393/1500x500',
+                            fit: BoxFit.cover,
+                          ),
+                        )
+                      ],
+                    )),
+              ),
               SliverToBoxAdapter(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: 356,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        clipBehavior: Clip.hardEdge,
-                        child: Stack(
-                          children: [
-                            Image.network(
-                              'https://pbs.twimg.com/profile_banners/605734189/1708339393/1500x500',
-                              height: double.infinity,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                            SafeArea(
-                                bottom: false,
-                                child: Padding(
-                                  padding: EdgeInsets.all(8),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                              child: CircleAvatar(
-                                            radius: 64,
-                                            child: Text('PR'),
-                                          ))
-                                        ],
-                                      )
-                                    ],
-                                  ),
-                                ))
-                          ],
+                    Padding(
+                      padding: const EdgeInsets.all(16),
+                      child: Text(
+                        'User Name',
+                        style: TextStyle(
+                          fontSize: 32,
                         ),
                       ),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Text(
-                            'User Name',
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    ProfileBadges(),
-                    Padding(padding: EdgeInsets.symmetric(vertical: 8)),
                   ],
+                ),
+              ),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 8),
+                  child: ProfileBadges(),
                 ),
               ),
               SliverAppBar(
                 automaticallyImplyLeading: false,
+                backgroundColor: Theme.of(context).colorScheme.surface,
+                surfaceTintColor: Theme.of(context).colorScheme.surface,
                 pinned: true,
+                title: null,
+                primary: false,
                 flexibleSpace: TabBar(
                     controller: _tabController,
                     isScrollable: true,
@@ -191,7 +157,7 @@ class _ProfileViewState extends State<ProfileView>
                         ),
                       ),
                     ]),
-              ),
+              )
             ];
           },
           body: TabBarView(
