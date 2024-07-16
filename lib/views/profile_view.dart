@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:learning_flutter/widgets/profile/profile_badges.dart';
 import 'package:learning_flutter/widgets/profile/tabs/profile_comments.dart';
@@ -38,36 +40,38 @@ class _ProfileViewState extends State<ProfileView>
     _scrollController.addListener(_scrollListener);
   }
 
+  //TODO: FIND GOOD ICON/TEXT SOLUTION
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       body: NestedScrollView(
           controller: _scrollController,
-          physics: BouncingScrollPhysics(),
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                title: _scrollPos > 356 ? Text('User Name') : null,
-                pinned: true,
-                expandedHeight: 356,
-                flexibleSpace: FlexibleSpaceBar(
-                    stretchModes: <StretchMode>[
-                      StretchMode.zoomBackground,
-                      StretchMode.blurBackground,
-                      StretchMode.fadeTitle
-                    ],
-                    background: Stack(
-                      children: [
-                        Positioned.fill(
-                          child: Image.network(
-                            'https://pbs.twimg.com/profile_banners/605734189/1708339393/1500x500',
-                            fit: BoxFit.cover,
-                          ),
-                        )
-                      ],
-                    )),
-              ),
+                  title: _scrollPos > 356 ? Text('User Name') : null,
+                  pinned: true,
+                  expandedHeight: 356,
+                  actions: [],
+                  flexibleSpace: ClipRect(
+                    child: Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(
+                                  'https://pbs.twimg.com/profile_banners/605734189/1708339393/1500x500'),
+                              fit: BoxFit.cover)),
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(
+                            sigmaX: (_scrollPos / 100).clamp(0, 5),
+                            sigmaY: (_scrollPos / 100).clamp(0, 5)),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(0.0)),
+                        ),
+                      ),
+                    ),
+                  )),
               SliverToBoxAdapter(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
