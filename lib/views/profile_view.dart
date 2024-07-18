@@ -50,7 +50,22 @@ class _ProfileViewState extends State<ProfileView>
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
+                  leading: IconButton(
+                    icon: Icon(Icons.navigate_before),
+                    iconSize: 32,
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ButtonStyle(
+                        iconColor: WidgetStatePropertyAll(Colors.white),
+                        backgroundColor:
+                            WidgetStatePropertyAll(Colors.black26)),
+                  ),
                   title: _scrollPos > 356 ? Text('User Name') : null,
+                  titleTextStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.w600),
                   pinned: true,
                   expandedHeight: 356,
                   actions: [],
