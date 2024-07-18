@@ -52,7 +52,6 @@ class _ProfileViewState extends State<ProfileView>
               SliverAppBar(
                   leading: IconButton(
                     icon: Icon(Icons.navigate_before),
-                    iconSize: 32,
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -78,8 +77,8 @@ class _ProfileViewState extends State<ProfileView>
                               fit: BoxFit.cover)),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(
-                            sigmaX: (_scrollPos / 100).clamp(0, 5),
-                            sigmaY: (_scrollPos / 100).clamp(0, 5)),
+                            sigmaX: (_scrollPos / 150).clamp(0, 5),
+                            sigmaY: (_scrollPos / 150).clamp(0, 5)),
                         child: Container(
                           decoration: BoxDecoration(
                               color: Colors.white.withOpacity(0.0)),
