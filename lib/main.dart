@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:learning_flutter/views/explore_view.dart';
-import 'package:learning_flutter/views/feed_view.dart';
-import 'package:learning_flutter/views/messages_view.dart';
+import 'package:groundhopper/views/explore_view.dart';
+import 'package:groundhopper/views/feed_view.dart';
+import 'package:groundhopper/views/messages_view.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
-import 'package:learning_flutter/views/search_view.dart';
+import 'package:groundhopper/views/search_view.dart';
 
 void main() {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();

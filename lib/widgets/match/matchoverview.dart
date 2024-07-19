@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/match/matchticker.dart';
+import 'package:groundhopper/widgets/match/matchticker.dart';
 
 enum Tab { ticker, info, statistics }
 

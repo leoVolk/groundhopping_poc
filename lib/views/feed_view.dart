@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/feed/feedcart.dart';
-import 'package:learning_flutter/widgets/main_drawer.dart';
+import 'package:groundhopper/widgets/feed/feedcart.dart';
+import 'package:groundhopper/widgets/main_drawer.dart';
 
 class FeedView extends StatefulWidget {
   const FeedView({

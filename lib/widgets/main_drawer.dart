@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/main.dart';
-import 'package:learning_flutter/views/mymatches_view.dart';
-import 'package:learning_flutter/views/profile_view.dart';
-import 'package:learning_flutter/views/settings_view.dart';
-import 'package:learning_flutter/views/subscription_view.dart';
+import 'package:groundhopper/main.dart';
+import 'package:groundhopper/views/mymatches_view.dart';
+import 'package:groundhopper/views/profile_view.dart';
+import 'package:groundhopper/views/settings_view.dart';
+import 'package:groundhopper/views/subscription_view.dart';
 
 class MainDrawerWidget extends StatefulWidget {
   const MainDrawerWidget({super.key});

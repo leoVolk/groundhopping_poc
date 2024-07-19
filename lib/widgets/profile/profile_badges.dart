@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/main.dart';
+import 'package:groundhopper/main.dart';
 
 class Badge {
   String name = '';

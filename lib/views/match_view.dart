@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/match/matchticker.dart';
+import 'package:groundhopper/widgets/match/matchticker.dart';
 
 class MatchView extends StatefulWidget {
   const MatchView({super.key, required this.matchId});

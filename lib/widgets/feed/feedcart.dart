@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/views/match_view.dart';
+import 'package:groundhopper/views/match_view.dart';
 
 class FeedCardWidget extends StatelessWidget {
   const FeedCardWidget({super.key, required this.matchId});

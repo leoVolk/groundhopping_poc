@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_fullscreen_image.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_fullscreen_image.dart';
 
 class ProfilePhotos extends StatelessWidget {
   const ProfilePhotos({super.key});

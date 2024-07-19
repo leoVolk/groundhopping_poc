@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/messages/messagebubble.dart';
+import 'package:groundhopper/widgets/messages/messagebubble.dart';
 
 class ChatView extends StatefulWidget {
   const ChatView({super.key, required this.chatId});

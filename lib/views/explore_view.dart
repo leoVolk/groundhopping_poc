@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:http/http.dart' as http;
-import 'package:learning_flutter/widgets/main_drawer.dart';
+import 'package:groundhopper/widgets/main_drawer.dart';
 
 //TODO: OPTIMIZE DATA FETCHING & FUNCTIONALITY
 class ExploreView extends StatefulWidget {

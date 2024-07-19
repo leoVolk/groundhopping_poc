@@ -1,12 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/profile/profile_badges.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_comments.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_history.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_overview.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_photos.dart';
-import 'package:learning_flutter/widgets/profile/tabs/profile_videos.dart';
+import 'package:groundhopper/widgets/profile/profile_badges.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_comments.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_history.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_overview.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_photos.dart';
+import 'package:groundhopper/widgets/profile/tabs/profile_videos.dart';
 
 class ProfileView extends StatefulWidget {
   const ProfileView({super.key});

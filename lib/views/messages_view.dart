@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:learning_flutter/widgets/main_drawer.dart';
-import 'package:learning_flutter/widgets/messages/messagepreview.dart';
+import 'package:groundhopper/widgets/main_drawer.dart';
+import 'package:groundhopper/widgets/messages/messagepreview.dart';
 
 class MessagesView extends StatelessWidget {
   const MessagesView({super.key});
