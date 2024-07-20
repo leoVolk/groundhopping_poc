@@ -136,9 +136,9 @@ class _RouterOutletState extends State<RouterOutlet> {
               selectedIcon: Icon(Icons.location_on),
               label: 'Explore'),
           NavigationDestination(
-              icon: Icon(Icons.search_outlined),
-              selectedIcon: Icon(Icons.search),
-              label: 'Search'),
+              icon: Icon(Icons.sports_soccer),
+              selectedIcon: Icon(Icons.sports_soccer),
+              label: 'Leagues'),
           NavigationDestination(
               icon: Badge(
                 label: Text("2"),
