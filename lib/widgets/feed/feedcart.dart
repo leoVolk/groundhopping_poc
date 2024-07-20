@@ -4,7 +4,7 @@ import 'package:groundhopper/views/match_view.dart';
 class FeedCardWidget extends StatelessWidget {
   const FeedCardWidget({super.key, required this.matchId});
 
-  final String matchId;
+  final int matchId;
 
   @override
   Widget build(BuildContext context) {

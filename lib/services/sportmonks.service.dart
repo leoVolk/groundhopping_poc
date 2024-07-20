@@ -32,4 +32,13 @@ class SportmonkService {
 
     return result['data'] != null ? List.from(result['data']) : List.empty();
   }
+
+  Future<dynamic> getFixtureById(int fixtureId) async {
+    final response = await http.get(Uri.parse(
+        '${url!}/fixtures/$fixtureId?api_token=${token!}&include=venue;comments'));
+
+    var result = jsonDecode(response.body);
+
+    return result['data'];
+  }
 }

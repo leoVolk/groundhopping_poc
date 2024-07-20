@@ -43,7 +43,6 @@ class _MainDrawerWidgetState extends State<MainDrawerWidget> {
       selectedIndex: _selectedIndex,
       onDestinationSelected: (value) => Navigator.push(context,
           MaterialPageRoute(builder: (context) => _destinations[value])),
-      // onDestinationSelected: (value) => print(_destinations[value]),
       children: [
         Padding(
           padding: EdgeInsets.all(16),

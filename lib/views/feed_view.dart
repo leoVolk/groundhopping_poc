@@ -27,7 +27,7 @@ class _FeedViewState extends State<FeedView> {
               24,
               (index) => Hero(
                     tag: 'img_$index',
-                    child: FeedCardWidget(matchId: 'match_$index'),
+                    child: FeedCardWidget(matchId: index),
                   )),
         ));
   }

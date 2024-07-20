@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groundhopper/services/sportmonks.service.dart';
+import 'package:groundhopper/views/match_view.dart';
 
 class LeagueFixtures extends StatefulWidget {
   const LeagueFixtures({super.key, required this.season, this.league});
@@ -33,8 +34,6 @@ class _LeagueFixturesState extends State<LeagueFixtures>
 
       currentRoundIndex =
           currentRound != null ? int.parse(currentRound['name']) : 0;
-
-      print(currentRoundIndex - 1);
 
       fixtures = currentRound['fixtures'];
     });
@@ -111,7 +110,14 @@ class _LeagueFixturesState extends State<LeagueFixtures>
                 clipBehavior: Clip.hardEdge,
                 color: Theme.of(context).colorScheme.surfaceContainerLow,
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => MatchView(
+                                  matchId: f['id'],
+                                )));
+                  },
                   child: Padding(
                     padding: const EdgeInsets.all(14.0),
                     child: Row(

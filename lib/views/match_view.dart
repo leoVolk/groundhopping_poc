@@ -1,12 +1,13 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:groundhopper/services/sportmonks.service.dart';
 import 'package:groundhopper/widgets/match/matchticker.dart';
 
 class MatchView extends StatefulWidget {
   const MatchView({super.key, required this.matchId});
 
-  final String matchId;
+  final int matchId;
 
   @override
   State<MatchView> createState() => _MatchViewState();
@@ -18,8 +19,21 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
     vsync: this,
   );
   late final ScrollController _scrollController = ScrollController();
+  final sportMonksService = SportmonkService();
 
   double _scrollPos = 0;
+
+  dynamic fixture;
+  dynamic venue;
+
+  Future<void> getFixtureById(int id) async {
+    var resp = await sportMonksService.getFixtureById(widget.matchId);
+
+    setState(() {
+      fixture = resp;
+      venue = fixture['venue'];
+    });
+  }
 
   _scrollListener() {
     setState(() {
@@ -33,6 +47,7 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
+    getFixtureById(widget.matchId);
   }
 
   @override
@@ -82,15 +97,14 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                            'Vfl Bochum vs. \nFC Bayern Munich',
+                                        Text('${fixture?['name']}',
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 32,
                                                 color: Colors.white)),
                                         Padding(padding: EdgeInsets.all(4)),
                                         Text(
-                                          'Vonovia Ruhrstadion, 15:30pm, 21.01.2024',
+                                          '${venue?['name']},${fixture?['starting_at']}',
                                           style: TextStyle(
                                               fontWeight: FontWeight.w400,
                                               fontSize: 16,
@@ -139,8 +153,8 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                     child: Container(
                       decoration: BoxDecoration(
                           image: DecorationImage(
-                              image: NetworkImage(
-                                  'https://vfl-magazin.de/wp-content/uploads/2023/05/220424_MN_01847-768x511.jpg'),
+                              image: NetworkImage(venue?['image_path'] ??
+                                  'https://plus.unsplash.com/premium_photo-1664297688755-84ecc3f6a0f7?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
                               fit: BoxFit.cover)),
                       child: BackdropFilter(
                         filter: ImageFilter.blur(
