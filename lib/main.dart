@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:groundhopper/views/explore_view.dart';
 import 'package:groundhopper/views/feed_view.dart';
@@ -7,9 +8,12 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 
 import 'package:groundhopper/views/search_view.dart';
 
-void main() {
+Future main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  await dotenv.load();
+
   runApp(const App());
 }
 
