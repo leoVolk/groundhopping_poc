@@ -16,10 +16,11 @@ class _SearchViewState extends State<SearchView> {
   late var leagues = List<dynamic>.empty();
 
   Future getLeagues() async {
-    var l = await sportMonksService.getLeagues();
+    var resp = await sportMonksService.getLeagues();
 
     setState(() {
-      leagues = l;
+      // leagues = resp.where((l) => l['sub_type'] != 'play-offs').toList();
+      leagues = resp;
     });
   }
 

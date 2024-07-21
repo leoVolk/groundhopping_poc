@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:groundhopper/services/sportmonks.service.dart';
 
-class LeagueStandings extends StatefulWidget {
-  const LeagueStandings({super.key, required this.season, this.league});
+class DomesticStandings extends StatefulWidget {
+  const DomesticStandings({super.key, required this.season, this.league});
 
   final dynamic season;
   final dynamic league;
 
   @override
-  State<LeagueStandings> createState() => _LeagueStandingsState();
+  State<DomesticStandings> createState() => _DomesticStandingsState();
 }
 
-class _LeagueStandingsState extends State<LeagueStandings>
+class _DomesticStandingsState extends State<DomesticStandings>
     with TickerProviderStateMixin {
   final sportMonksService = SportmonkService();
 

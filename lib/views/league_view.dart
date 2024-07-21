@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:groundhopper/widgets/league/league_fixtures.dart';
-import 'package:groundhopper/widgets/league/league_standings.dart';
+import 'package:groundhopper/widgets/league/domestic_fixtures.dart';
+import 'package:groundhopper/widgets/league/domestic_standings.dart';
+import 'package:groundhopper/widgets/league/seasons_list.dart';
 
 class LeagueView extends StatefulWidget {
   const LeagueView({super.key, required this.season, this.league});
@@ -17,6 +18,14 @@ class _LeagueViewState extends State<LeagueView> with TickerProviderStateMixin {
     length: 3,
     vsync: this,
   );
+
+  dynamic leagueSubType;
+
+  @override
+  void initState() {
+    super.initState();
+    leagueSubType = widget.league['sub_type'];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +51,30 @@ class _LeagueViewState extends State<LeagueView> with TickerProviderStateMixin {
         body: TabBarView(
           controller: tabController,
           children: [
-            LeagueStandings(season: widget.season),
-            LeagueFixtures(season: widget.season),
-            Text('Foobar')
+            //TODO: make play offs etc. functional
+            if (leagueSubType == 'domestic') ...[
+              DomesticStandings(season: widget.season),
+              DomesticFixtures(season: widget.season),
+            ],
+            if (leagueSubType == 'domestic_cup') ...[
+              Text('FOOBAR'),
+              Text('FOOBAR'),
+            ],
+            if (leagueSubType == 'cup_international') ...[
+              Text('FOOBAR'),
+              Text('FOOBAR'),
+            ],
+            if (leagueSubType == 'friendly') ...[
+              Text('FOOBAR'),
+              Text('FOOBAR'),
+            ],
+            if (leagueSubType == 'play-offs') ...[
+              Text('FOOBAR'),
+              Text('FOOBAR'),
+            ],
+            SeasonsList(
+              league: widget.league,
+            )
           ],
         ));
   }

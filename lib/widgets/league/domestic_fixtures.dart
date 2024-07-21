@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:groundhopper/services/sportmonks.service.dart';
 import 'package:groundhopper/views/match_view.dart';
 
-class LeagueFixtures extends StatefulWidget {
-  const LeagueFixtures({super.key, required this.season, this.league});
+class DomesticFixtures extends StatefulWidget {
+  const DomesticFixtures({super.key, required this.season});
 
   final dynamic season;
-  final dynamic league;
+  //final dynamic league;
 
   @override
-  State<LeagueFixtures> createState() => _LeagueFixturesState();
+  State<DomesticFixtures> createState() => _DomesticFixturesState();
 }
 
-class _LeagueFixturesState extends State<LeagueFixtures>
+class _DomesticFixturesState extends State<DomesticFixtures>
     with TickerProviderStateMixin {
   final sportMonksService = SportmonkService();
 
@@ -33,7 +33,7 @@ class _LeagueFixturesState extends State<LeagueFixtures>
       currentRound ??= rounds[0];
 
       currentRoundIndex =
-          currentRound != null ? int.parse(currentRound['name']) : 0;
+          currentRound != null ? int.parse(currentRound['name']) - 1 : 0;
 
       fixtures = currentRound['fixtures'];
     });
@@ -46,6 +46,7 @@ class _LeagueFixturesState extends State<LeagueFixtures>
   }
 
   Future<void> _handleRefresh() async {
+    //TODO: Rewrite to not reset matchday scrolling
     getSeasonSchedule(widget.season['id']);
   }
 
@@ -68,19 +69,38 @@ class _LeagueFixturesState extends State<LeagueFixtures>
         physics: AlwaysScrollableScrollPhysics(),
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Column(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                if (currentRound != null)
-                  Text(
-                    'Matchday ${currentRound['name']}',
-                    style: TextStyle(fontSize: 24),
-                  ),
-                if (currentRound == null)
-                  Text(
-                    'Matchday 0',
-                    style: TextStyle(fontSize: 24),
-                  ),
+                IconButton(
+                    disabledColor: Colors.transparent,
+                    onPressed: currentRoundIndex == 0
+                        ? null
+                        : () {
+                            setState(() {
+                              currentRoundIndex -= 1;
+                              currentRound = rounds[currentRoundIndex];
+                              fixtures = currentRound['fixtures'];
+                            });
+                          },
+                    icon: Icon(Icons.arrow_back)),
+                Text(
+                  'Matchday ${currentRound['name']}',
+                  style: TextStyle(fontSize: 24),
+                ),
+                IconButton(
+                    disabledColor: Colors.transparent,
+                    onPressed: currentRoundIndex == rounds.length - 1
+                        ? null
+                        : () {
+                            setState(() {
+                              currentRoundIndex += 1;
+                              currentRound = rounds[currentRoundIndex];
+                              fixtures = currentRound['fixtures'];
+                            });
+                          },
+                    icon: Icon(Icons.arrow_forward)),
               ],
             ),
           ),
@@ -130,7 +150,7 @@ class _LeagueFixturesState extends State<LeagueFixtures>
                         if (isFinishedOrCurrent)
                           Expanded(
                               child: Container(
-                            color: Theme.of(context).colorScheme.surface,
+                            color: Theme.of(context).colorScheme.onSecondary,
                             child: Text(
                               '$scoresTeam1:$scoresTeam2',
                               textAlign: TextAlign.center,
