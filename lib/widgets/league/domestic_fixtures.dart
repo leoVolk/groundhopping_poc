@@ -114,17 +114,27 @@ class _DomesticFixturesState extends State<DomesticFixtures>
 
               bool isFinishedOrCurrent = startTime.isBefore(DateTime.now());
 
-              var scoresTeam1 = (f['scores'] as List)
+              var currentTeam1 = (f['scores'] as List)
                   .where(
-                    (element) => element['score']['participant'] == 'home',
+                    (element) =>
+                        element['score']['participant'] == 'home' &&
+                        element['description'] == 'CURRENT',
                   )
-                  .length;
+                  .firstOrNull;
 
-              var scoresTeam2 = (f['scores'] as List)
+              var currentTeam2 = (f['scores'] as List)
                   .where(
-                    (element) => element['score']['participant'] == 'away',
+                    (element) =>
+                        element['score']['participant'] == 'away' &&
+                        element['description'] == 'CURRENT',
                   )
-                  .length;
+                  .firstOrNull;
+
+              var scoresTeam1 =
+                  currentTeam1 != null ? currentTeam1['score']['goals'] : 0;
+
+              var scoresTeam2 =
+                  currentTeam2 != null ? currentTeam2['score']['goals'] : 0;
 
               return Card(
                 clipBehavior: Clip.hardEdge,
