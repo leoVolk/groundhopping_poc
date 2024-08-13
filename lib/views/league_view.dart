@@ -27,6 +27,7 @@ class _LeagueViewState extends State<LeagueView> with TickerProviderStateMixin {
     leagueSubType = widget.league['sub_type'];
   }
 
+  //TODO: make play offs etc. functional
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +52,6 @@ class _LeagueViewState extends State<LeagueView> with TickerProviderStateMixin {
         body: TabBarView(
           controller: tabController,
           children: [
-            //TODO: make play offs etc. functional
             if (leagueSubType == 'domestic') ...[
               DomesticStandings(season: widget.season),
               DomesticFixtures(season: widget.season),

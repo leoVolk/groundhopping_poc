@@ -35,7 +35,7 @@ class SportmonkService {
 
   Future<dynamic> getFixtureById(int fixtureId) async {
     final response = await http.get(Uri.parse(
-        '${url!}/fixtures/$fixtureId?api_token=${token!}&include=venue;comments'));
+        '${url!}/fixtures/$fixtureId?api_token=${token!}&include=venue;comments;scores'));
 
     var result = jsonDecode(response.body);
 

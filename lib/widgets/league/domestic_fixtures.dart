@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:groundhopper/services/sportmonks.service.dart';
+import 'package:groundhopper/utils/sportmonks.utils.dart';
 import 'package:groundhopper/views/match_view.dart';
 
 class DomesticFixtures extends StatefulWidget {
@@ -113,6 +114,9 @@ class _DomesticFixturesState extends State<DomesticFixtures>
               var startTime = DateTime.parse(f['starting_at']);
 
               bool isFinishedOrCurrent = startTime.isBefore(DateTime.now());
+              bool isCurrent = SportMonksUtils.checkIfGameIsCurrent(startTime);
+
+              print(isCurrent);
 
               var currentTeam1 = (f['scores'] as List)
                   .where(
@@ -165,7 +169,9 @@ class _DomesticFixturesState extends State<DomesticFixtures>
                               '$scoresTeam1:$scoresTeam2',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  color: isCurrent ? Colors.amberAccent : null),
                             ),
                           )),
                         if (!isFinishedOrCurrent)

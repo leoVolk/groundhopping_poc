@@ -25,6 +25,7 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
 
   dynamic fixture;
   dynamic venue;
+  dynamic scores;
 
   Future<void> getFixtureById(int id) async {
     var resp = await sportMonksService.getFixtureById(widget.matchId);
@@ -32,6 +33,7 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
     setState(() {
       fixture = resp;
       venue = fixture['venue'];
+      scores = fixture['scores'];
     });
   }
 
@@ -56,6 +58,28 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
       body: NestedScrollView(
           controller: _scrollController,
           headerSliverBuilder: (context, innerBoxIsScrolled) {
+            var currentTeam1 = (scores as List)
+                .where(
+                  (element) =>
+                      element['score']['participant'] == 'home' &&
+                      element['description'] == 'CURRENT',
+                )
+                .firstOrNull;
+
+            var currentTeam2 = (scores as List)
+                .where(
+                  (element) =>
+                      element['score']['participant'] == 'away' &&
+                      element['description'] == 'CURRENT',
+                )
+                .firstOrNull;
+
+            var scoresTeam1 =
+                currentTeam1 != null ? currentTeam1['score']['goals'] : 0;
+
+            var scoresTeam2 =
+                currentTeam2 != null ? currentTeam2['score']['goals'] : 0;
+
             return [
               SliverAppBar(
                   toolbarHeight: kToolbarHeight,
@@ -186,7 +210,7 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                             ),
                           ),
                           child: Text(
-                            '3 - 2',
+                            '$scoresTeam1:$scoresTeam2',
                             style: TextStyle(
                                 fontSize: 32,
                                 color: Theme.of(context)
@@ -205,7 +229,7 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                     Padding(
                       padding: EdgeInsets.all(8),
                       child: Text(
-                        'Vonovia Ruhrstadion',
+                        '${venue?['name']}',
                         style: TextStyle(
                             fontSize: 24,
                             color:
