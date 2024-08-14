@@ -1,22 +1,30 @@
 import 'package:flutter/material.dart';
 
 class MatchTicker extends StatelessWidget {
-  const MatchTicker({super.key});
+  const MatchTicker({super.key, required this.comments});
+
+  final dynamic comments;
 
   @override
   Widget build(BuildContext context) {
     ColorScheme scheme = Theme.of(context).colorScheme;
 
-    return SafeArea(
-      top: false,
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: List.generate(
-            24,
-            (index) => Column(
+    return comments == null || comments.length == 0
+        ? Center(
+            child: Text('No Comments available'),
+          )
+        : SafeArea(
+            top: false,
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: List.generate(comments.length, (index) {
+                var c = comments[index];
+
+                return Column(
                   children: [
                     Container(
-                        color: index == 0 ? scheme.error : scheme.surface,
+                        color:
+                            c['is_important'] ? scheme.error : scheme.surface,
                         child: Row(
                           children: [
                             Flexible(
@@ -30,17 +38,19 @@ class MatchTicker extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        '45+2`',
+                                        '${c['minute']}`${c['extra_minute'] ?? ''}',
                                         style: TextStyle(
-                                            color: index == 0
+                                            color: c['is_important']
                                                 ? scheme.onError
                                                 : scheme.onSurface,
-                                            fontSize: 16),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy',
+                                        c['comment'].toString(),
                                         style: TextStyle(
-                                            color: index == 0
+                                            fontSize: 16,
+                                            color: c['is_important']
                                                 ? scheme.onError
                                                 : scheme.onSurface),
                                       ),
@@ -51,13 +61,14 @@ class MatchTicker extends StatelessWidget {
                             ))),
                           ],
                         )),
-                    if (index < 23)
+                    if (index < comments.length - 1)
                       Divider(
                         height: 0,
                       )
                   ],
-                )),
-      ),
-    );
+                );
+              }),
+            ),
+          );
   }
 }
