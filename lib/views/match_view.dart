@@ -102,9 +102,9 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                                   WidgetStatePropertyAll(Colors.black26)),
                         ),
                         pinned: true,
-                        collapsedHeight: 100,
+                        collapsedHeight: 124,
                         bottom: PreferredSize(
-                          preferredSize: Size.fromHeight(156),
+                          preferredSize: Size.fromHeight(124),
                           child: Container(
                             alignment: Alignment.bottomCenter,
                             decoration: BoxDecoration(
@@ -316,8 +316,12 @@ class _MatchViewState extends State<MatchView> with TickerProviderStateMixin {
                   controller: _tabController,
                   children: [
                     MatchTicker(comments: comments),
-                    MatchTicker(comments: comments),
-                    MatchTicker(comments: comments),
+                    Center(
+                      child: Text('Coming later'),
+                    ),
+                    Center(
+                      child: Text('Coming later'),
+                    )
                   ],
                 )),
           );

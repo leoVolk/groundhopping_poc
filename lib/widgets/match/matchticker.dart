@@ -40,7 +40,8 @@ class MatchTicker extends StatelessWidget {
                                       Text(
                                         '${c['minute']}`${c['extra_minute'] ?? ''}',
                                         style: TextStyle(
-                                            color: c['is_important']
+                                            color: c['is_important'] ||
+                                                    c['is_goal']
                                                 ? scheme.onError
                                                 : scheme.onSurface,
                                             fontSize: 18,
@@ -50,7 +51,8 @@ class MatchTicker extends StatelessWidget {
                                         c['comment'].toString(),
                                         style: TextStyle(
                                             fontSize: 16,
-                                            color: c['is_important']
+                                            color: c['is_important'] ||
+                                                    c['is_goal']
                                                 ? scheme.onError
                                                 : scheme.onSurface),
                                       ),
